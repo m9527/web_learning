@@ -1,0 +1,22 @@
+.title{
+	color:#fff;
+	background-color: rgb(145, 141, 141);
+	padding: 20px;
+}
+.n1{
+	width: 10%;
+    float: left;
+    padding:30px;
+    background-color: #ccc;
+	left:0;
+	border-bottom:2px solid #ccc;
+	clear: both;
+}
+.n2{
+	width: 85.5%;
+	float: right;
+	height: 112px;
+	padding: 10px;
+	border-bottom:2px solid #ccc;
+
+}

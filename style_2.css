@@ -1,0 +1,19 @@
+body {
+    width: 90%;
+    max-width: 900px;
+
+  }
+ .title {
+    width: 20%;
+    height: 680px;
+    float: left;
+    text-align: center;
+    color: #fff;
+    background-color: dodgerblue;
+  }
+  .n1{
+    margin-left:200px;
+  }
+.n2{
+  margin-left:200px;
+}

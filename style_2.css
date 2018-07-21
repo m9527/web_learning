@@ -11,6 +11,9 @@ body {
     color: #fff;
     background-color: dodgerblue;
   }
+.demo{
+    float:right;
+}
   .n1{
     margin-left:200px;
   }

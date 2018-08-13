@@ -1,0 +1,98 @@
+升级版的十进制转二进制（方法一）（自己的）
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>        
+    <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+    <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数"> 
+    <button id="trans-btn" onclick="dec2bin()">转化为二进制</button>
+    <p id="result">运算结果</p>
+    <script>
+
+function dec2bin(q,figure) {
+    var anum = parseInt(document.getElementById("dec-number").value)
+    if(anum == /^(0|[1-9]\d*)$/ ){
+        alert("输入一个非负整数，兄弟！！！");
+    }else{
+        var q = anum.toString(2)  
+    }
+    var figure = parseInt( document.getElementById("bin-bit").value);
+    if (figure < q.length){
+        console.log("error：位数小于二进制位数");
+        document.getElementById("result").innerHTML ="运算结果为："+ q ;
+    }else{
+    for(var i=q.length;i<figure;i++)
+     {
+        q ="0"+ q ;
+     }  
+     document.getElementById("result").innerHTML ="运算结果为："+ q ;
+    }
+}
+
+    </script>
+</body>
+</html>
+
+
+升级版的十进制转二进制（方法二）(转载他人的https://blog.csdn.net/qq_36301072/article/details/80379122)
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>        
+    <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+    <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+    <button id="trans-btn">转化为二进制</button>
+    <p id="result">运算结果 :</p>
+    <script>
+
+function dec2bin(decNumber,bit) {
+    // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+    // 这里是上一个任务的实现
+    if (decNumber<0) {
+        alert("请输入一个非负整数")
+    } else {
+        var q = binary(decNumber,bit);
+        document.getElementById("result").innerHTML="运算结果为："+ q; 
+    }
+}
+//实现控制位数的二进制转换
+function binary (num, Bits) {
+    var resArry = [];
+    var xresArry = [];
+    i=0;
+    for(;num>0;){
+        resArry.push(num % 2);
+        num=parseInt(num/2);
+        i++;
+    }
+    for(j=i-1;j>=0;j--)
+        xresArry.push(resArry[j]); //数组反向输出
+        if (Bits < xresArry.length) {
+            console.log("error：位数小于二进制位数")
+        }      
+    if (Bits) {
+        for(var r = xresArry.length; r < Bits; r++) {
+        xresArry.unshift(0);
+        }
+     }
+     return xresArry.join("");
+      }
+    document.getElementById("trans-btn").onclick=function(){
+        var d = parseFloat(document.getElementById("dec-number").value);
+        var b =parseFloat(document.getElementById("bin-bit").value);
+        dec2bin(d,b);  
+    }
+// 实现党点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
+// 新的需求是，转化显示后的二进制数为bin-bit中输入的数字宽度，例如
+// dec-number为5，bin-bit为5，则转化后数字为00101
+// 如果bin-bit小于转化后的二进制本身位数，则使用原本的位数，如dec-number为5，bin-bit为2，依然输出101，但同时在console中报个错
+    </script>
+</body>
+</html>

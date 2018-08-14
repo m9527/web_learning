@@ -1,22 +1,22 @@
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=utf-8">
-<link rel="stylesheet" type="text/css" href="style_2.css">
+<link rel="stylesheet" type="text/css" href="style_2.css" id="style_2">
 <script src="resume.js"></script>
 </head>
 <body>
 <div class="main">
+        <button id="style_3" onclick="javascript:document.getElementById('style_2').href='style_3.css'" style="float: right;margin: 10px">样式三</button>
+        <button id="style_2" onclick="javascript:document.getElementById('style_2').href='style_2.css'" style="float: right;margin: 10px">样式二</button>
+        <button id="style_1" onclick="javascript:document.getElementById('style_2').href='style_1.css'" style="float: right;margin: 10px">样式一</button>
 <div class="title">
-<h1>简&nbsp;&nbsp;历</h1>
+<h1>简&nbsp;&nbsp;历</h1>  
 </div>
 <div class="basic">
 <div class="n1">
     <h2>基本信息</h2>
 </div>
-<div class="demo">
-    <button onclick="displayDate()">当前时间</button>
-    <p id = "demo"></p>
-</div>
+
 <div class="n2">
 <b>姓名</b>&nbsp;&nbsp;张三&nbsp;&nbsp; 
 <b> 性别 </b> &nbsp;&nbsp;男&nbsp;&nbsp;
@@ -73,7 +73,6 @@
         <p>作为文档工程师参与了SAN Doc编写</p>
 </div>
 </div>
-</div>
-</div>
+
 </body>
 </html>

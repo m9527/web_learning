@@ -1,3 +1,18 @@
+function skin1(){
+var ol=document.getElementById("style_1");
+    ol.href = "style_1.css";
+}
+
+function skin2(){
+var ol=document.getElementById("style_2");
+    ol.href = "style_2.css";
+}
+function skin3(){
+var ol=document.getElementById("style_3");
+    ol.href = "style_3.css";
+}
+
+
 var date=new Date();
 var hour=date.getHours();
 var min=date.getMinutes();

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+    <style>
+        select {
+            display:none;
+        }
+    </style>
+    <script >
+    window.onload = function(){
+        var ochose1 = document.getElementById("school");
+        var ochose2 = document.getElementById("company");
+        var show1 = document.getElementById("school-select");
+        var show2 = document.getElementById("company-select");
+ 
+       ochose1.onclick = function(){
+        if(show2.style.display = "block"){
+            show2.style.display = "none";
+            show1.style.display = "block";
+           }
+         
+        } 
+       ochose2.onclick = function(){
+           if(show1.style.display = "block"){
+            show1.style.display = "none";
+            show2.style.display = "block";
+           }
+          
+        } 
+      
+    }
+    </script>
+</head>
+<body>            
+    <label>
+        <input id="school" name="status" type="radio">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio">
+        Company
+    </label>
+
+    <select id="school-select">        
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">        
+        <option>百度</option>
+        <option>爱奇艺</option>        
+    </select>
+  
+</body>
+</html>

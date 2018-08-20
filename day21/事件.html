@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <link rel="stylesheet" type="text/css" href=""/>
+<script type="text/javascript">
+    function main(){
+  var txt1 = document.getElementById("name").value;
+  document.querySelector("p").innerHTML = txt1;
+  console.log(txt1);
+}
+function next(event){
+  var x =event.keyCode || event.which;
+  if(x == 13){
+    main();
+  }else if(x ==27){
+    document.getElementById("name").value = "";
+    var txt1 = document.getElementById("name").value;
+    document.querySelector("p").innerHTML = txt1;
+  }
+  
+}
+    </script>
+</head>
+<body>
+        <input id="name" type="text" onkeydown="next(event)" >    
+        <button  id="submit-btn" onclick="main()" >Submit</button>
+        <p>123546</p>
+</body>  
+</html>

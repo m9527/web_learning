@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <link rel="stylesheet" type="text/css"  />
+    <script>
+    window.onload = function(){
+        var i= 0;
+       function  move(){
+        
+           i++;
+           if (i<10){
+            i = "0"+i;
+           }else if(i>17){
+               clearInterval(time);
+              i = 17;
+           }
+           
+        var aImg = document.getElementById("smile");
+          aImg.src = "weixiao/images/"+i+".png";
+       }
+       var time = setInterval(move,100);
+    }
+    </script>
+</head>
+<body>
+   <div >
+       <img id="smile" src="weixiao/images/01.png">
+   </div> 
+</body>
+</html>

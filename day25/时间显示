@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <link rel="stylesheet" type="text/css"  />
+</head>
+
+<body>
+    <p id = "time1"></p>
+    <p id = "time2"></p>
+    <script>
+        function getWeekDay(date) {
+            switch (date.getDay()) {
+                case 1:
+                    return '一';
+                case 2:
+                    return '二';
+                case 3:
+                    return '三';
+                case 4:
+                    return '四';
+                case 5:
+                    return '五';
+                case 6:
+                    return '六';
+                case 0:
+                    return '天';
+                default:
+                    return '错误的数值';
+            }
+        }
+        function getWeekOffsetEnglish(date) {
+            switch (date.getDay()) {
+                case 1:
+                    return 'Monday';
+                case 2:
+                    return 'Tuesday';
+                case 3:
+                    return 'Wednesday';
+                case 4:
+                    return 'Thursday';
+                case 5:
+                    return 'Friday';
+                case 6:
+                    return 'Saturday';
+                case 0:
+                    return 'Sunday';
+                default:
+                    return '错误的数值';
+            }
+        }
+        function fill2(num) {
+            var str = num.toString();
+            if (str.length == 2) {
+                return str;
+            }
+            return '0' + num;
+        }
+        function format1(date) {
+            return date.getFullYear() + '年' + fill2(date.getMonth() + 1) + '月' + fill2(date.getDate()) + '日 星期' + getWeekDay(date) + ' '  + fill2(date.getHours()) + ':' + fill2(date.getMinutes()) + ':' + fill2(date.getSeconds());
+        }
+          function format2(date) {
+              var time12 = 'AM';
+              if(date.getHours() > 12){
+                  time12 = "PM"
+              }
+            return date.getFullYear() + '-' + fill2(date.getMonth() + 1) + '-' + fill2(date.getDate()) + ' ' + getWeekOffsetEnglish(date) + ' '  + fill2(date.getHours()%12) + ':' + fill2(date.getMinutes()) + ':' + fill2(date.getSeconds()) + ' '+ time12;
+        }
+        function refresh(){
+            document.getElementById("time1").textContent = format1(new Date());
+            document.getElementById("time2").textContent = format2(new Date());
+        }
+        window.onload = setInterval(refresh,1000);
+    </script>
+
+
+</body>
+
+</html>

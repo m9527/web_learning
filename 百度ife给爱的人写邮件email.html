@@ -5,15 +5,17 @@
 </head>
 <style>
     .email-sug {
+        width: 198px;
         padding: 0;
         margin: 0;
         list-style: none;
+        border:1px solid #ccc;
     }
 </style>
 
 <body id="body">
     <div id="wrapper">
-        <input id="email-input" type="text">
+        <input id="email-input" type="text" style="width:200px;">
         <ul id="email-sug-wrapper" class="email-sug"></ul>
     </div>
     <script>
@@ -78,7 +80,7 @@
             for (var i in resultList) {
                 var li = document.createElement("li");
                 if (i == nowSelectTipIndex) {
-                    li.style.backgroundColor = "yellow";
+                    li.style.backgroundColor = "#bde0ea";
                 }
                 li.textContent = resultList[i];
                 wrapper.appendChild(li);
@@ -97,7 +99,7 @@
         wrapper.addEventListener("mouseover", function (e) {
             var event = e || window.event;
             var target = event.target || event.srcElement;
-            target.style.backgroundColor = "red";
+            target.style.backgroundColor = "#ffc5cf";
         });
         wrapper.addEventListener("mouseout", function (e) {
             var event = e || window.event;

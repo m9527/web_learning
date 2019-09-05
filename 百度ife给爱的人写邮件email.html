@@ -24,16 +24,14 @@
         var wrapper = document.getElementById("email-sug-wrapper");
         var directions = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
         var enter = "Enter"
-        var pre;
-        var next;
         var nowSelectTipIndex = 0;
 
         /********* 提示功能 start *****************************/
         // 输入的监听
 
        input.addEventListener("keyup", function (e) {
-            console.log(e.code)
-            if (!directions.includes(e.code) && enter != e.code) {
+            // console.log(e.code)
+            if (!directions.includes(e.code) && enter != e.code && e.code != "NumpadEnter") {
                 resetSelect();
             } else {
                 moveByKey(e);
@@ -45,12 +43,13 @@
                 input.select();
                 return;
             }
+        });
+        input.addEventListener("input", function (e) { 
             var content = getContent();
             var resultList = createLint(content);
             appendUl(resultList);
             showOrHiddenWrapper();
         });
-        input.addEventListener("input", function (e) { moveByKey(e) });
         //获取输入的内容
         function getContent() {
             var content = input.value.trim();
@@ -136,7 +135,7 @@
                 }
                 return;
             }
-            if (e.code == "Enter") {
+            if (e.code == "Enter" || e.code == "NumpadEnter") {
                 input.value = wrapper.getElementsByTagName("li")[nowSelectTipIndex].textContent;
                 wrapper.innerHTML = "";
             }
@@ -149,7 +148,7 @@
         function getSelect() {
             var liList = wrapper.getElementsByTagName("li");
             for (var i = 0; i < liList.length; i++) {
-                if (liList[i].style.backgroundColor == "yellow") {
+                if (liList[i].style.backgroundColor == "#bde0ea") {
                     return liList[i];
                 }
             }
@@ -158,7 +157,7 @@
         function getSelectIndex() {
             var liList = wrapper.getElementsByTagName("li");
             for (var i = 0; i < liList.length; i++) {
-                if (liList[i].style.backgroundColor == "yellow") {
+                if (liList[i].style.backgroundColor == "#bde0ea") {
                     return i;
                 }
             }

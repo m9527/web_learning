@@ -1,0 +1,170 @@
+<html>
+
+<head>
+    <title>邮箱</title>
+</head>
+<style>
+    .email-sug {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+</style>
+
+<body id="body">
+    <div id="wrapper">
+        <input id="email-input" type="text">
+        <ul id="email-sug-wrapper" class="email-sug"></ul>
+    </div>
+    <script>
+        var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+        var input = document.getElementById("email-input");
+        var wrapper = document.getElementById("email-sug-wrapper");
+        var directions = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+        var enter = "Enter"
+        var pre;
+        var next;
+        var nowSelectTipIndex = 0;
+
+        /********* 提示功能 start *****************************/
+        // 输入的监听
+
+       input.addEventListener("keyup", function (e) {
+            console.log(e.code)
+            if (!directions.includes(e.code) && enter != e.code) {
+                resetSelect();
+            } else {
+                moveByKey(e);
+            }
+            if (enter == e.code) {
+                return;
+            }
+            if ("Escape" == e.code) {
+                input.select();
+                return;
+            }
+            var content = getContent();
+            var resultList = createLint(content);
+            appendUl(resultList);
+            showOrHiddenWrapper();
+        });
+        input.addEventListener("input", function (e) { moveByKey(e) });
+        //获取输入的内容
+        function getContent() {
+            var content = input.value.trim();
+            return content;
+        }
+        //生成提示框中的提示内容(
+        function createLint(content) {
+            var index = content.indexOf('@');
+            var back = "";
+            if (index != -1) {
+                back = content.substring(index + 1);
+                content = content.substring(0, index);
+            }
+            var resultList = [];
+            var matchList = [];
+            for (var s in postfixList) {
+                if (back.length > 0 && postfixList[s].startsWith(back)) {
+                    matchList.push(content + '@' + postfixList[s]);
+                }
+                resultList.push(content + '@' + postfixList[s]);
+            }
+            return matchList.length > 0 ? matchList : resultList;
+        }
+        //将提示内容添加到email-sug-wrapper中
+        function appendUl(resultList) {
+            wrapper.innerHTML = "";
+            for (var i in resultList) {
+                var li = document.createElement("li");
+                if (i == nowSelectTipIndex) {
+                    li.style.backgroundColor = "yellow";
+                }
+                li.textContent = resultList[i];
+                wrapper.appendChild(li);
+            }
+        }
+        // 控制email-sug-wrapper的显示/隐藏状态
+        function showOrHiddenWrapper() {
+            if (getContent().length < 1) {
+                wrapper.style.display = "none";
+            } else {
+                wrapper.style.display = "block";
+            }
+        }
+        /********* 提示功能 end *****************************/
+        /********* 选择功能 start *****************************/
+        wrapper.addEventListener("mouseover", function (e) {
+            var event = e || window.event;
+            var target = event.target || event.srcElement;
+            target.style.backgroundColor = "red";
+        });
+        wrapper.addEventListener("mouseout", function (e) {
+            var event = e || window.event;
+            var target = event.target || event.srcElement;
+            target.style.backgroundColor = "white";
+        });
+        wrapper.addEventListener("mouseup", function (e) {
+            // 兼容性处理
+            var event = e || window.event;
+            var target = event.target || event.srcElement;
+            // 判断是否匹配目标元素
+            if (target.nodeName.toLowerCase() === 'li') {
+                input.value = target.innerHTML;
+                wrapper.innerHTML = "";
+                input.focus();
+            }
+        });
+
+        function moveByKey(e) {
+            if (e.code == "ArrowUp") {
+                if (nowSelectTipIndex == 0) {
+                    nowSelectTipIndex = wrapper.children.length - 1;
+                } else {
+                    nowSelectTipIndex = nowSelectTipIndex - 1;
+                }
+                return;
+            }
+
+            if (e.code == "ArrowDown") {
+                if (nowSelectTipIndex == wrapper.children.length - 1) {
+                    nowSelectTipIndex = 0;
+                } else {
+                    nowSelectTipIndex = nowSelectTipIndex + 1;
+                }
+                return;
+            }
+            if (e.code == "Enter") {
+                input.value = wrapper.getElementsByTagName("li")[nowSelectTipIndex].textContent;
+                wrapper.innerHTML = "";
+            }
+
+        }
+        function resetSelect() {
+            nowSelectTipIndex = 0;
+        }
+
+        function getSelect() {
+            var liList = wrapper.getElementsByTagName("li");
+            for (var i = 0; i < liList.length; i++) {
+                if (liList[i].style.backgroundColor == "yellow") {
+                    return liList[i];
+                }
+            }
+        }
+
+        function getSelectIndex() {
+            var liList = wrapper.getElementsByTagName("li");
+            for (var i = 0; i < liList.length; i++) {
+                if (liList[i].style.backgroundColor == "yellow") {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        /********* 选择功能 end *****************************/
+        input.focus();
+    </script>
+</body>
+
+</html>
